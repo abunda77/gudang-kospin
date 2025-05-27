@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goods Received Note - Dokumentasi Gudang Koperasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1f2937; }
+        .markdown-body { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .markdown-body h1, 
+        .markdown-body h2, 
+        .markdown-body h3 { margin-top: 1.5em; margin-bottom: 0.8em; font-weight: 600; color: #111827; }
+        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+        .markdown-body p { margin-bottom: 1em; }
+        .markdown-body table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.9em; }
+        .markdown-body th, .markdown-body td { border: 1px solid #e5e7eb; padding: 0.6em 1em; text-align: left; }
+        .markdown-body th { background-color: #f9fafb; font-weight: 600; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: #2563eb;
+            font-weight: 500;
+            margin-bottom: 1.5em;
+            text-decoration: none;
+        }
+        .back-button:hover { text-decoration: underline; }
+        .header-info { margin-bottom: 2rem; }
+        .header-info p { margin: 0.25rem 0; }
+        .signature-area { margin-top: 3rem; }
+        .signature-line { border-top: 1px solid #000; width: 200px; margin: 2rem 0 0.5rem 0; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="markdown-container bg-white shadow-lg rounded-lg overflow-hidden max-w-5xl mx-auto my-8">
+        <div class="p-6 border-b border-gray-200">
+            <a href="../index.html#dokumen" class="back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Kembali ke Halaman Utama
+            </a>
+            <h1 class="text-2xl font-bold text-gray-800">Goods Received Note (GRN)</h1>
+        </div>
+        <div class="p-6">
+            <div class="header-info">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p><strong>Nomor GRN:</strong> GRN-[nomor]</p>
+                        <p><strong>Tanggal:</strong> [dd/mm/yyyy]</p>
+                        <p><strong>Nomor PO:</strong> [nomor PO]</p>
+                    </div>
+                    <div>
+                        <p><strong>Supplier:</strong> [Nama Supplier]</p>
+                        <p><strong>No. Surat Jalan:</strong> [nomor surat jalan]</p>
+                        <p><strong>Diterima Oleh:</strong> [Nama Penerima]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr>
+                            <th class="border px-4 py-2">No</th>
+                            <th class="border px-4 py-2">Kode Barang</th>
+                            <th class="border px-4 py-2">Nama Barang</th>
+                            <th class="border px-4 py-2">Satuan</th>
+                            <th class="border px-4 py-2">Jumlah Dipesan</th>
+                            <th class="border px-4 py-2">Jumlah Diterima</th>
+                            <th class="border px-4 py-2">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="border px-4 py-2 text-center">1</td>
+                            <td class="border px-4 py-2">[Kode]</td>
+                            <td class="border px-4 py-2">[Nama Barang]</td>
+                            <td class="border px-4 py-2 text-center">[PCS/KG/DLL]</td>
+                            <td class="border px-4 py-2 text-right">[Qty]</td>
+                            <td class="border px-4 py-2 text-right">[Qty]</td>
+                            <td class="border px-4 py-2">[Keterangan]</td>
+                        </tr>
+                        <!-- Baris tambahan bisa ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="font-semibold mb-2">Kondisi Barang:</h3>
+                    <div class="space-y-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
+                            <span class="ml-2">Baik</span>
+                        </label>
+                        <div class="ml-6">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
+                                <span class="ml-2">Ada Kerusakan</span>
+                            </label>
+                            <p class="text-sm text-gray-600 mt-1">Jika ada kerusakan, lampirkan form ketidaksesuaian</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Keterangan Tambahan:</h3>
+                    <div class="border rounded p-2 h-24">
+                        <!-- Area untuk catatan -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="signature-area mt-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <div class="signature-line"></div>
+                        <p>Penerima Barang</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="signature-line"></div>
+                        <p>Pemeriksa Barang</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="signature-line"></div>
+                        <p>Mengetahui,</p>
+                        <p>Kepala Gudang</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-semibold text-blue-800 mb-2">Petunjuk Pengisian:</h3>
+                <ol class="list-decimal pl-5 text-sm text-blue-700 space-y-1">
+                    <li>Isi semua kolom yang tersedia dengan data yang sesuai</li>
+                    <li>Periksa kembali jumlah barang yang diterima sesuai dengan faktur</li>
+                    <li>Jika ada ketidaksesuaian, segera buat laporan ketidaksesuaian</li>
+                    <li>Pastikan dokumen ini ditandatangani oleh pihak yang berwenang</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

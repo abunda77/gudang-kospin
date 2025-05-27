@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faktur - Dokumentasi Gudang Koperasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1f2937; }
+        .markdown-body { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .markdown-body h1, 
+        .markdown-body h2, 
+        .markdown-body h3, 
+        .markdown-body h4, 
+        .markdown-body h5, 
+        .markdown-body h6 { margin-top: 1.5em; margin-bottom: 0.8em; font-weight: 600; color: #111827; }
+        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+        .markdown-body h3 { font-size: 1.25em; }
+        .markdown-body p { margin-bottom: 1em; }
+        .markdown-body ul, .markdown-body ol { margin-bottom: 1em; padding-left: 1.5em; }
+        .markdown-body li { margin-bottom: 0.5em; }
+        .markdown-body code { background-color: #f3f4f6; padding: 0.2em 0.4em; border-radius: 0.25em; font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; font-size: 0.9em; }
+        .markdown-body pre { background-color: #f9fafb; border-radius: 0.5em; padding: 1em; overflow-x: auto; margin-bottom: 1.5em; }
+        .markdown-body pre code { background-color: transparent; padding: 0; }
+        .markdown-body table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.9em; }
+        .markdown-body th, .markdown-body td { border: 1px solid #e5e7eb; padding: 0.6em 1em; text-align: left; }
+        .markdown-body th { background-color: #f9fafb; font-weight: 600; }
+        .markdown-body blockquote { border-left: 4px solid #e5e7eb; color: #6b7280; padding: 0 1em; margin: 1.5em 0; font-style: italic; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: #2563eb;
+            font-weight: 500;
+            margin-bottom: 1.5em;
+            text-decoration: none;
+        }
+        .back-button:hover { text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="markdown-container bg-white shadow-lg rounded-lg overflow-hidden max-w-5xl mx-auto my-8">
+        <div class="p-6 border-b border-gray-200">
+            <a href="../index.html#dokumen" class="back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Kembali ke Halaman Utama
+            </a>
+            <h1 class="text-2xl font-bold text-gray-800">Faktur</h1>
+        </div>
+        <div class="markdown-body p-6">
+            <h2>Faktur</h2>
+            <p>Dokumen tagihan resmi yang dikeluarkan oleh supplier yang berisi rincian barang yang dikirim beserta harga dan ketentuan pembayarannya.</p>
+            
+            <h3>Komponen Utama Faktur</h3>
+            <ul>
+                <li><strong>Kepala Faktur</strong>: Logo, nama, dan alamat perusahaan supplier</li>
+                <li><strong>Nomor Faktur</strong>: Nomor unik sebagai referensi</li>
+                <li><strong>Tanggal Faktur</strong>: Tanggal penerbitan faktur</li>
+                <li><strong>Detail Pembeli</strong>: Nama dan alamat perusahaan</li>
+                <li><strong>Daftar Barang</strong>: Rincian item, kuantitas, harga satuan, dan total</li>
+                <li><strong>Subtotal</strong>: Total sebelum pajak</li>
+                <li><strong>Pajak</strong>: PPN dan pajak lainnya jika ada</li>
+                <li><strong>Total Pembayaran</strong>: Jumlah yang harus dibayar</li>
+                <li><strong>Ketentuan Pembayaran</strong>: Cara dan tenggat pembayaran</li>
+            </ul>
+
+            <h3>Proses Verifikasi Faktur</h3>
+            <ol>
+                <li>Periksa kesesuaian nomor PO dengan dokumen pembelian</li>
+                <li>Cockan daftar barang dengan Surat Jalan dan fisik barang</li>
+                <li>Verifikasi harga satuan sesuai Purchase Order</li>
+                <li>Periksa perhitungan subtotal, pajak, dan total</li>
+                <li>Pastikan ada tanda tangan yang berwenang dari supplier</li>
+            </ol>
+
+            <h3>Alur Kerja Faktur</h3>
+            <pre><code>Penerimaan Faktur → Pencocokan dengan PO → Verifikasi Barang → Pencatatan → Persetujuan → Pembayaran</code></pre>
+
+            <h3>Penyimpanan</h3>
+            <p>Faktur asli disimpan dalam map khusus yang diorganisir berdasarkan nomor faktur dan bulan. Backup digital disimpan dalam folder terstruktur di sistem arsip digital.</p>
+
+            <h3>Template Faktur</h3>
+            <p>Download template faktur standar: <a href="#" class="text-blue-600 hover:underline">Template_Faktur_Standar.xlsx</a></p>
+        </div>
+    </div>
+</body>
+</html>

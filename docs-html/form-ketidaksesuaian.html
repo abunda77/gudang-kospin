@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Ketidaksesuaian - Dokumentasi Gudang Koperasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1f2937; }
+        .markdown-body { max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .markdown-body h1, 
+        .markdown-body h2, 
+        .markdown-body h3, 
+        .markdown-body h4, 
+        .markdown-body h5, 
+        .markdown-body h6 { margin-top: 1.5em; margin-bottom: 0.8em; font-weight: 600; color: #111827; }
+        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.3em; }
+        .markdown-body h3 { font-size: 1.25em; }
+        .markdown-body p { margin-bottom: 1em; }
+        .markdown-body ul, .markdown-body ol { margin-bottom: 1em; padding-left: 1.5em; }
+        .markdown-body li { margin-bottom: 0.5em; }
+        .markdown-body code { background-color: #f3f4f6; padding: 0.2em 0.4em; border-radius: 0.25em; font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace; font-size: 0.9em; }
+        .markdown-body pre { background-color: #f9fafb; border-radius: 0.5em; padding: 1em; overflow-x: auto; margin-bottom: 1.5em; }
+        .markdown-body pre code { background-color: transparent; padding: 0; }
+        .markdown-body table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.9em; }
+        .markdown-body th, .markdown-body td { border: 1px solid #e5e7eb; padding: 0.6em 1em; text-align: left; }
+        .markdown-body th { background-color: #f9fafb; font-weight: 600; }
+        .markdown-body blockquote { border-left: 4px solid #e5e7eb; color: #6b7280; padding: 0 1em; margin: 1.5em 0; font-style: italic; }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            color: #2563eb;
+            font-weight: 500;
+            margin-bottom: 1.5em;
+            text-decoration: none;
+        }
+        .back-button:hover { text-decoration: underline; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="markdown-container bg-white shadow-lg rounded-lg overflow-hidden max-w-5xl mx-auto my-8">
+        <div class="p-6 border-b border-gray-200">
+            <a href="../index.html#dokumen" class="back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                </svg>
+                Kembali ke Halaman Utama
+            </a>
+            <h1 class="text-2xl font-bold text-gray-800">Form Ketidaksesuaian</h1>
+        </div>
+        <div class="markdown-body p-6">
+            <h2>Form Ketidaksesuaian Barang</h2>
+            <p>Dokumen ini digunakan untuk mencatat setiap ketidaksesuaian yang ditemukan saat proses penerimaan barang.</p>
+            
+            <h3>Informasi Umum</h3>
+            <ul>
+                <li><strong>Nomor Dokumen</strong>: [Auto-generated]</li>
+                <li><strong>Tanggal</strong>: [Tanggal pembuatan]</li>
+                <li><strong>Dibuat Oleh</strong>: [Nama petugas]</li>
+                <li><strong>Status</strong>: [Baru/Dalam Proses/Selesai]</li>
+            </ul>
+
+            <h3>Detail Ketidaksesuaian</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Deskripsi Barang</th>
+                        <th>Kuantitas</th>
+                        <th>Jenis Ketidaksesuaian</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>[Nama Barang]</td>
+                        <td>[Qty]</td>
+                        <td>Rusak/Kurang/Tidak Sesuai</td>
+                        <td>[Keterangan detail]</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Penyelesaian</h3>
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-yellow-700">
+                            Setiap ketidaksesuaian harus dilaporkan segera ke atasan dan tim pembelian untuk ditindaklanjuti.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Tanda Tangan</h3>
+            <div class="grid grid-cols-1 md:grid-cd-2 gap-4 mt-4">
+                <div class="border-t-2 border-gray-200 pt-4">
+                    <p>Petugas Penerimaan Barang</p>
+                    <div class="mt-12 mb-2">
+                        <p class="border-t border-gray-400 w-48"></p>
+                    </div>
+                    <p class="text-sm text-gray-600">Nama & Tanda Tangan</p>
+                </div>
+                <div class="border-t-2 border-gray-200 pt-4">
+                    <p>Mengetahui,</p>
+                    <p class="text-sm text-gray-600">Atasan/Koordinator</p>
+                    <div class="mt-12 mb-2">
+                        <p class="border-t border-gray-400 w-48"></p>
+                    </div>
+                    <p class="text-sm text-gray-600">Nama & Tanda Tangan</p>
+                </div>
+            </div>
+
+            <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                <h4 class="font-medium text-gray-800 mb-2">Catatan:</h4>
+                <ul class="list-disc pl-5 text-sm text-gray-600">
+                    <li>Form ini harus diisi dengan lengkap dan jelas</li>
+                    <li>Lampirkan bukti foto jika diperlukan</li>
+                    <li>Form disimpan sebagai arsip selama minimal 1 tahun</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

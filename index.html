@@ -333,37 +333,36 @@
                 <p class="section-subtitle">KPI yang terukur membantu memantau kinerja, mengidentifikasi area perbaikan,
                     dan memastikan pencapaian target operasional.</p>
                 <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Akurasi Penerimaan
-                        </h3>
-                        <div class="chart-container">
-                            <canvas id="kpiAkurasiPenerimaan"></canvas>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Akurasi Penerimaan</h3>
+                        <div class="flex justify-center">
+                            <img src="images/grafik_1.png" alt="Grafik Akurasi Penerimaan" class="h-48 object-contain">
                         </div>
                         <p class="text-sm text-center text-gray-600 mt-2">Persentase kesesuaian barang diterima dengan
                             PO. Target: >99%.</p>
                     </div>
-                    <div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Waktu Siklus
                             Penerimaan</h3>
-                        <div class="chart-container">
-                            <canvas id="kpiWaktuSiklus"></canvas>
+                        <div class="flex justify-center">
+                            <img src="images/grafik_2.png" alt="Grafik Waktu Siklus Penerimaan" class="h-48 object-contain">
                         </div>
                         <p class="text-sm text-center text-gray-600 mt-2">Waktu dari barang tiba hingga siap disimpan.
                             Target: <2 Jam.</p>
                     </div>
-                    <div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Tingkat
                             Kerusakan/Ketidaksesuaian</h3>
-                        <div class="chart-container">
-                            <canvas id="kpiTingkatKerusakan"></canvas>
+                        <div class="flex justify-center">
+                            <img src="images/grafik_3.png" alt="Grafik Tingkat Kerusakan" class="h-48 object-contain">
                         </div>
                         <p class="text-sm text-center text-gray-600 mt-2">Persentase barang rusak/tidak sesuai. Target:
-                            <1%.< /p>
+                            <1%.</p>
                     </div>
-                    <div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
                         <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Akurasi Data Stok</h3>
-                        <div class="chart-container">
-                            <canvas id="kpiAkurasiStok"></canvas>
+                        <div class="flex justify-center">
+                            <img src="images/grafik_4.png" alt="Grafik Akurasi Data Stok" class="h-48 object-contain">
                         </div>
                         <p class="text-sm text-center text-gray-600 mt-2">Kesesuaian stok fisik dengan sistem
                             pasca-penerimaan. Target: >99.5%.</p>
@@ -403,6 +402,97 @@
                     <div>
                         <h3 class="text-md font-semibold" style="color: #004299;">GRN / BPB</h3>
                         <p class="text-xs text-gray-500">Bukti internal penerimaan barang.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dokumen" class="py-12 md:py-16">
+            <h2 class="section-title">Dokumen Penting</h2>
+            <p class="section-subtitle">Berikut adalah daftar dokumen standar yang digunakan dalam proses penerimaan barang.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                <!-- Dokumen Faktur -->
+                <div class="card hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-blue-600 text-2xl">📄</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Faktur</h3>
+                            <p class="text-sm text-gray-600 mb-3">Dokumen tagihan dari supplier yang berisi rincian barang dan harga.</p>
+                            <a href="docs-html/faktur.html" class="text-blue-600 hover:underline text-sm font-medium">Lihat Detail →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dokumen Form Ketidaksesuaian -->
+                <div class="card hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-blue-600 text-2xl">📋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Form Ketidaksesuaian</h3>
+                            <p class="text-sm text-gray-600 mb-3">Formulir untuk mencatat ketidaksesuaian barang yang diterima.</p>
+                            <a href="docs-html/form-ketidaksesuaian.html" class="text-blue-600 hover:underline text-sm font-medium">Lihat Detail →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dokumen Goods Received Note -->
+                <div class="card hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-blue-600 text-2xl">📑</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Goods Received Note</h3>
+                            <p class="text-sm text-gray-600 mb-3">Bukti penerimaan barang yang mencatat rincian barang yang diterima.</p>
+                            <a href="docs-html/goods-received-note.html" class="text-blue-600 hover:underline text-sm font-medium">Lihat Detail →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dokumen Label Barang -->
+                <div class="card hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-blue-600 text-2xl">🏷️</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Label Barang</h3>
+                            <p class="text-sm text-gray-600 mb-3">Standar pelabelan barang untuk memudahkan identifikasi dan pelacakan.</p>
+                            <a href="docs-html/label-barang.html" class="text-blue-600 hover:underline text-sm font-medium">Lihat Detail →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dokumen Purchase Order -->
+                <div class="card hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-blue-600 text-2xl">📝</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Purchase Order</h3>
+                            <p class="text-sm text-gray-600 mb-3">Dokumen pemesanan resmi dari perusahaan kepada supplier.</p>
+                            <a href="docs-html/purchase-order.html" class="text-blue-600 hover:underline text-sm font-medium">Lihat Detail →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dokumen Surat Jalan -->
+                <div class="card hover:shadow-lg transition-shadow duration-300">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <span class="text-blue-600 text-2xl">🚛</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Surat Jalan</h3>
+                            <p class="text-sm text-gray-600 mb-3">Dokumen pengiriman yang menyertai barang selama pengiriman.</p>
+                            <a href="docs-html/surat-jalan.html" class="text-blue-600 hover:underline text-sm font-medium">Lihat Detail →</a>
+                        </div>
                     </div>
                 </div>
             </div>
