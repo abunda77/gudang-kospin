@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis: Optimalisasi Gudang Retail Modern</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- HTML Comment: Ringkasan Rencana Infografis
+        1.  Judul & Pendahuluan: Pentingnya efisiensi gudang retail modern.
+        2.  Pilar Utama: SOP Penerimaan Barang (Tahapan Kunci).
+        3.  Aktor Kunci: Peran dan Tanggung Jawab Tim.
+        4.  Pengubah Permainan: Integrasi Teknologi (WMS, ERP, Scanner).
+        5.  Visualisasi Alur: Proses Detail Penerimaan Barang (HTML/CSS Flowchart).
+        6.  Mengukur Kesuksesan: Indikator Kinerja Utama (KPI) dengan Chart.js.
+        7.  Dokumen Penting: Daftar dokumen kunci dalam proses.
+        8.  Kesimpulan: Menuju Gudang Masa Depan yang Efisien.
+        Konfirmasi: TIDAK ADA Mermaid JS atau SVG yang digunakan dalam output ini.
+    -->
+    <!-- HTML Comment: Pilihan Palet Warna
+        Nama Palet: "Brilliant Blues" (Diadaptasi dengan aksen untuk keterbacaan)
+        - Latar Utama: #F0F4F8 (Off-white/Light Greyish Blue)
+        - Latar Kartu: #FFFFFF (Putih)
+        - Teks Utama: #1E293B (Dark Slate)
+        - Teks Sekunder: #475569 (Medium Slate)
+        - Aksen Utama (Biru Tua): #004299 
+        - Aksen Sekunder (Biru Sedang): #2A6EBC
+        - Aksen Tersier (Biru Muda): #559BD8
+        - Warna Chart (Contoh): [#2A6EBC, #559BD8, #80C9F3, #004299]
+        - Warna Peringatan/Sorotan (jika perlu): #F59E0B (Amber/Orange)
+    -->
+    <!-- HTML Comment: Pilihan Visualisasi (Data Point -> Goal -> Visualization -> Justification/Library/Method - Confirming NO SVG)
+        -   SOP Stages -> Organize -> HTML/CSS List/Simplified Flow (Tailwind) -> Clear stage presentation (NO SVG)
+        -   Key Roles -> Organize -> HTML/CSS Cards (Tailwind) -> Clear role depiction (NO SVG)
+        -   Technology Impact -> Inform -> HTML/CSS Big Numbers & Cards (Tailwind) -> Highlight tech benefits (NO SVG)
+        -   Goods Reception Flow -> Organize (Process) -> HTML/CSS Flowchart (Tailwind, divs, borders, Unicode arrows) -> Detailed process visualization (NO SVG, NO MERMAID JS)
+        -   KPIs -> Inform/Compare -> Chart.js Bar Charts (Canvas) -> Quantifiable performance metrics (NO SVG, Chart.js Canvas)
+        -   Key Documents -> Organize -> HTML/CSS List/Cards (Tailwind) -> Simple listing (NO SVG)
+    -->
+    <style>
+        /* CSS telah dipindahkan ke file terpisah di css/styles.css */
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <nav id="navbar" class="sticky-nav shadow-md py-3">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-wrap justify-center items-center space-x-4 md:space-x-6 text-sm md:text-base">
+                <a href="#pendahuluan"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">Pendahuluan</a>
+                <a href="#sop"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">SOP</a>
+                <a href="#aktor"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">Aktor
+                    Kunci</a>
+                <a href="#teknologi"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">Teknologi</a>
+                <a href="#alurproses"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">Alur
+                    Proses</a>
+                <a href="#kpi"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">KPI</a>
+                <a href="#dokumen"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">Dokumen</a>
+                <a href="#kesimpulan"
+                    class="nav-link font-semibold text-gray-600 hover:text-blue-700 py-2 border-b-2 border-transparent">Kesimpulan</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <section id="pendahuluan" class="py-12 md:py-16">
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-4" style="color: #004299;">Mengoptimalkan Gudang
+                Retail Modern</h1>
+            <p class="text-lg md:text-xl text-center text-gray-700 mb-10 max-w-3xl mx-auto">Alur Penerimaan Barang yang
+                Efisien dan Peran Teknologi sebagai Kunci Sukses di Era Persaingan Retail yang Dinamis.</p>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="card">
+                    <div class="text-5xl mb-3" style="color: #2A6EBC;">🚚</div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #004299;">Kecepatan</h3>
+                    <p class="text-gray-600 text-sm">Respons cepat terhadap permintaan pasar membutuhkan proses
+                        penerimaan yang gesit.</p>
+                </div>
+                <div class="card">
+                    <div class="text-5xl mb-3" style="color: #2A6EBC;">📦</div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #004299;">Akurasi</h3>
+                    <p class="text-gray-600 text-sm">Data stok yang akurat adalah fondasi untuk pengambilan keputusan
+                        yang tepat.</p>
+                </div>
+                <div class="card">
+                    <div class="text-5xl mb-3" style="color: #2A6EBC;">⏱️</div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: #004299;">Efisiensi</h3>
+                    <p class="text-gray-600 text-sm">Mengurangi pemborosan waktu dan biaya melalui proses yang
+                        terstandardisasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sop" class="py-12 md:py-16 bg-white rounded-xl shadow-xl my-12">
+            <div class="px-4 md:px-8">
+                <h2 class="section-title">Pilar Utama: SOP Penerimaan Barang</h2>
+                <p class="section-subtitle">Standard Operating Procedure (SOP) yang jelas adalah fondasi untuk
+                    konsistensi dan kualitas dalam setiap tahap penerimaan barang.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card border-l-4 border-blue-600">
+                        <h3 class="text-lg font-semibold mb-2" style="color: #004299;">1. Pra-Penerimaan</h3>
+                        <p class="text-sm text-gray-600">Koordinasi jadwal, persiapan dokumen PO, dan penyiapan area
+                            serta peralatan penerimaan.</p>
+                    </div>
+                    <div class="card border-l-4 border-blue-600">
+                        <h3 class="text-lg font-semibold mb-2" style="color: #004299;">2. Kedatangan & Pembongkaran</h3>
+                        <p class="text-sm text-gray-600">Penerimaan dokumen dari suplier, verifikasi awal, dan proses
+                            pembongkaran barang yang aman.</p>
+                    </div>
+                    <div class="card border-l-4 border-blue-600">
+                        <h3 class="text-lg font-semibold mb-2" style="color: #004299;">3. Verifikasi Kuantitas &
+                            Kualitas</h3>
+                        <p class="text-sm text-gray-600">Pengecekan fisik barang, penggunaan barcode scanner, dan
+                            penanganan jika ada ketidaksesuaian.</p>
+                    </div>
+                    <div class="card border-l-4 border-blue-600">
+                        <h3 class="text-lg font-semibold mb-2" style="color: #004299;">4. Input Data ke Sistem
+                            (Real-time)</h3>
+                        <p class="text-sm text-gray-600">Pembuatan GRN/BPB dan update stok secara otomatis dan langsung
+                            di WMS/ERP.</p>
+                    </div>
+                    <div class="card border-l-4 border-blue-600">
+                        <h3 class="text-lg font-semibold mb-2" style="color: #004299;">5. Penyimpanan Barang (Putaway)
+                        </h3>
+                        <p class="text-sm text-gray-600">Identifikasi lokasi, pemindahan barang, dan konfirmasi
+                            penyimpanan di sistem WMS.</p>
+                    </div>
+                    <div class="card border-l-4 border-blue-600">
+                        <h3 class="text-lg font-semibold mb-2" style="color: #004299;">6. Penyelesaian Administrasi</h3>
+                        <p class="text-sm text-gray-600">Penandatanganan dokumen serah terima, pengarsipan, dan
+                            komunikasi internal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="aktor" class="py-12 md:py-16">
+            <h2 class="section-title">Aktor Kunci dalam Proses</h2>
+            <p class="section-subtitle">Kolaborasi tim yang solid dengan peran dan tanggung jawab yang jelas memastikan
+                kelancaran operasional.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card text-center">
+                    <div class="text-4xl mb-3">👨‍💼</div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: #004299;">Kepala Gudang</h3>
+                    <p class="text-sm text-gray-600">Pengawasan keseluruhan, memastikan SOP berjalan, dan pengambilan
+                        keputusan strategis.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-4xl mb-3">👷‍♂️</div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: #004299;">Staf Penerimaan</h3>
+                    <p class="text-sm text-gray-600">Pelaksana operasional penerimaan fisik, verifikasi awal, dan
+                        penggunaan scanner.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-4xl mb-3">👩‍💻</div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: #004299;">Admin Gudang</h3>
+                    <p class="text-sm text-gray-600">Input data ke WMS/ERP, pembuatan GRN/BPB, dan kelengkapan
+                        dokumentasi.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-4xl mb-3">🤝</div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: #004299;">Tim Pembelian</h3>
+                    <p class="text-sm text-gray-600">Menyediakan PO, koordinasi dengan suplier, dan penanganan
+                        ketidaksesuaian.</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-4xl mb-3">🔬</div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: #004299;">Tim Quality Control</h3>
+                    <p class="text-sm text-gray-600">Pemeriksaan kualitas barang secara spesifik sesuai standar
+                        perusahaan (jika ada).</p>
+                </div>
+                <div class="card text-center">
+                    <div class="text-4xl mb-3">🚚</div>
+                    <h3 class="text-xl font-semibold mb-1" style="color: #004299;">Suplier & Logistik</h3>
+                    <p class="text-sm text-gray-600">Mitra penting dalam pengiriman barang tepat waktu dan sesuai
+                        pesanan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="teknologi" class="py-12 md:py-16 bg-white rounded-xl shadow-xl my-12">
+            <div class="px-4 md:px-8">
+                <h2 class="section-title">Pengubah Permainan: Integrasi Teknologi</h2>
+                <p class="section-subtitle">Teknologi modern adalah akselerator utama untuk mencapai efisiensi dan
+                    akurasi tinggi dalam manajemen gudang.</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="kpi-card">
+                        <div class="text-5xl mb-4" style="color: #2A6EBC;">💻</div>
+                        <h3 class="text-xl font-semibold mb-2" style="color: #004299;">WMS & ERP</h3>
+                        <p class="text-sm text-gray-600 mb-3">Sistem terintegrasi untuk manajemen PO, inventori
+                            real-time, lokasi gudang, dan pelaporan analitik.</p>
+                        <p class="kpi-value">>99%</p>
+                        <p class="kpi-target">Potensi Akurasi Stok</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="text-5xl mb-4" style="color: #2A6EBC;">📲</div>
+                        <h3 class="text-xl font-semibold mb-2" style="color: #004299;">Barcode Scanner</h3>
+                        <p class="text-sm text-gray-600 mb-3">Mempercepat verifikasi, mengurangi kesalahan input manual,
+                            dan meningkatkan akurasi data secara signifikan.</p>
+                        <p class="kpi-value">>50%</p>
+                        <p class="kpi-target">Potensi Peningkatan Kecepatan Proses</p>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="text-5xl mb-4" style="color: #2A6EBC;">📊</div>
+                        <h3 class="text-xl font-semibold mb-2" style="color: #004299;">Data Real-time</h3>
+                        <p class="text-sm text-gray-600 mb-3">Visibilitas stok akurat di seluruh jaringan, memungkinkan
+                            pengambilan keputusan yang lebih cepat dan tepat.</p>
+                        <p class="kpi-value">24/7</p>
+                        <p class="kpi-target">Aksesibilitas Informasi Stok</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="alurproses" class="py-12 md:py-16">
+            <h2 class="section-title">Visualisasi Alur: Proses Penerimaan Barang</h2>
+            <p class="section-subtitle">Memahami setiap langkah dalam alur penerimaan barang, dari kedatangan suplier
+                hingga barang siap untuk proses selanjutnya.</p>
+
+            <div class="max-w-5xl mx-auto p-4 overflow-x-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 items-start">
+                    <div class="space-y-2">
+                        <div class="flowchart-step">A. Suplier Menyiapkan & Mengirim Barang (SJ/DO, Faktur)</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step">B. Kendaraan Suplier Tiba di Area Gudang</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step">C. Lapor Kedatangan, Staf Terima Dokumen (SJ/DO)</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step flowchart-decision">D. Verifikasi Awal Dokumen (Cocokkan SJ/DO dgn PO
+                            di WMS/ERP)</div>
+                    </div>
+
+                    <div class="space-y-2 md:mt-0">
+                        <div class="hidden md:block h-[168px]"></div>
+                        <div class="hidden md:block flowchart-connector">
+                            <div class="flowchart-connector-line-horizontal"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-x-2">
+                            <div>
+                                <div class="flowchart-connector text-sm justify-end pr-1">PO Sesuai & Valid ↓</div>
+                                <div class="flowchart-step">F. Pembongkaran Barang ke Area Transit</div>
+                                <div class="flowchart-connector">
+                                    <div class="flowchart-connector-line"></div>↓
+                                </div>
+                                <div class="flowchart-step">G. Verifikasi Fisik (Kuantitas & Kualitas via Scanner)</div>
+                                <div class="flowchart-connector">
+                                    <div class="flowchart-connector-line"></div>↓
+                                </div>
+                                <div class="flowchart-step flowchart-decision">H. Hasil Verifikasi Sesuai?</div>
+                            </div>
+                            <div class="md:pt-[28px]">
+                                <div class="flowchart-connector text-sm justify-start pl-1">PO Tdk Ditemukan/Mayor ↓
+                                </div>
+                                <div class="flowchart-step">E. Hubungi KGD/Pembelian, Tahan Pembongkaran</div>
+                                <div class="flowchart-connector"><span
+                                        class="text-sm transform -rotate-90 inline-block">⤴</span> Kembali ke D</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2 md:mt-0">
+                        <div class="hidden md:block h-[400px]"></div>
+                        <div class="hidden md:block flowchart-connector">
+                            <div class="flowchart-connector-line-horizontal"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-x-2">
+                            <div>
+                                <div class="flowchart-connector text-sm justify-end pr-1">Sesuai ↓</div>
+                                <div class="flowchart-step">J. Input Data Barang Sesuai ke WMS/ERP</div>
+                            </div>
+                            <div class="md:pt-[28px]">
+                                <div class="flowchart-connector text-sm justify-start pl-1">Tidak Sesuai ↓</div>
+                                <div class="flowchart-step">I. Pisahkan, Catat, Info KGD/Pembelian (Klaim/Retur)</div>
+                            </div>
+                        </div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>Gabung ke J ↓
+                        </div>
+                        <div class="flowchart-step"
+                            style="background-color: #FFF9C4; border-color: #F57F17; color: #F57F17;">K. Sistem WMS/ERP:
+                            Generate GRN/BPB, Update Stok REAL-TIME</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step">L. Proses Putaway (WMS Rekomendasi Lokasi)</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step"
+                            style="background-color: #FFF9C4; border-color: #F57F17; color: #F57F17;">M. Konfirmasi
+                            Penempatan di WMS (Scan Produk & Lokasi)</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step"
+                            style="background-color: #C8E6C9; border-color: #2E7D32; color: #1B5E20;">N. Stok Tersedia
+                            Akurat, Siap Proses Lanjut</div>
+                        <div class="flowchart-connector">
+                            <div class="flowchart-connector-line"></div>↓
+                        </div>
+                        <div class="flowchart-step">O. Penyelesaian Administrasi (TTD SJ, Arsip)</div>
+                    </div>
+                </div>
+                <p class="text-xs text-center text-gray-500 mt-6">Diagram alur ini disederhanakan untuk visualisasi.
+                    Proses aktual mungkin melibatkan sub-langkah tambahan.</p>
+            </div>
+        </section>
+
+        <section id="kpi" class="py-12 md:py-16 bg-white rounded-xl shadow-xl my-12">
+            <div class="px-4 md:px-8">
+                <h2 class="section-title">Mengukur Kesuksesan: Indikator Kinerja Utama (KPI)</h2>
+                <p class="section-subtitle">KPI yang terukur membantu memantau kinerja, mengidentifikasi area perbaikan,
+                    dan memastikan pencapaian target operasional.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Akurasi Penerimaan
+                        </h3>
+                        <div class="chart-container">
+                            <canvas id="kpiAkurasiPenerimaan"></canvas>
+                        </div>
+                        <p class="text-sm text-center text-gray-600 mt-2">Persentase kesesuaian barang diterima dengan
+                            PO. Target: >99%.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Waktu Siklus
+                            Penerimaan</h3>
+                        <div class="chart-container">
+                            <canvas id="kpiWaktuSiklus"></canvas>
+                        </div>
+                        <p class="text-sm text-center text-gray-600 mt-2">Waktu dari barang tiba hingga siap disimpan.
+                            Target: <2 Jam.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Tingkat
+                            Kerusakan/Ketidaksesuaian</h3>
+                        <div class="chart-container">
+                            <canvas id="kpiTingkatKerusakan"></canvas>
+                        </div>
+                        <p class="text-sm text-center text-gray-600 mt-2">Persentase barang rusak/tidak sesuai. Target:
+                            <1%.< /p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-center mb-3" style="color:#004299;">Akurasi Data Stok</h3>
+                        <div class="chart-container">
+                            <canvas id="kpiAkurasiStok"></canvas>
+                        </div>
+                        <p class="text-sm text-center text-gray-600 mt-2">Kesesuaian stok fisik dengan sistem
+                            pasca-penerimaan. Target: >99.5%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dokumen" class="py-12 md:py-16">
+            <h2 class="section-title">Dokumen Penting dalam Proses</h2>
+            <p class="section-subtitle">Dokumentasi yang lengkap dan akurat adalah kunci untuk audit, pelacakan, dan
+                penyelesaian masalah yang efektif.</p>
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="card flex items-center space-x-3">
+                    <div class="text-3xl" style="color: #559BD8;">📄</div>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #004299;">Purchase Order (PO)</h3>
+                        <p class="text-xs text-gray-500">Dasar pemesanan barang.</p>
+                    </div>
+                </div>
+                <div class="card flex items-center space-x-3">
+                    <div class="text-3xl" style="color: #559BD8;">📄</div>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #004299;">Surat Jalan (SJ/DO)</h3>
+                        <p class="text-xs text-gray-500">Bukti pengiriman dari suplier.</p>
+                    </div>
+                </div>
+                <div class="card flex items-center space-x-3">
+                    <div class="text-3xl" style="color: #559BD8;">📄</div>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #004299;">Faktur (Invoice)</h3>
+                        <p class="text-xs text-gray-500">Dokumen tagihan dari suplier.</p>
+                    </div>
+                </div>
+                <div class="card flex items-center space-x-3">
+                    <div class="text-3xl" style="color: #559BD8;">📄</div>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #004299;">GRN / BPB</h3>
+                        <p class="text-xs text-gray-500">Bukti internal penerimaan barang.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kesimpulan"
+            class="py-12 md:py-16 text-center bg-gradient-to-r from-blue-700 to-blue-500 text-white rounded-xl shadow-xl my-12">
+            <div class="px-4 md:px-8">
+                <h2 class="text-3xl font-bold mb-4">Menuju Gudang Retail Masa Depan yang Efisien</h2>
+                <p class="text-lg mb-6 max-w-2xl mx-auto">Dengan SOP yang solid, tim yang kompeten, integrasi teknologi
+                    yang cerdas, dan fokus pada perbaikan berkelanjutan, gudang retail modern dapat bertransformasi
+                    menjadi pusat operasional yang lincah, akurat, dan responsif terhadap kebutuhan pasar.</p>
+                <div class="text-4xl">✨🚀</div>
+            </div>
+        </section>
+
+
+    <footer class="text-center py-8 text-sm text-gray-500">
+        Infografis ini dibuat berdasarkan SOP Penerimaan Barang Gudang Retail Modern. <br>
+        &copy; <span id="currentYear"></span> Perusahaan Retail Anda. Hak Cipta Dilindungi.
+    </footer>
+
+    <!-- JavaScript eksternal -->
+    <script src="js/main.js"></script>
+    <script src="js/charts.js"></script>
+</body>
+
+</html>
+</body>
+
+</html>
