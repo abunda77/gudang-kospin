@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Interaktif: SOP Pengeluaran Barang ke Etalase Kasir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Application Structure Plan: 
+        Struktur aplikasi dirancang untuk memandu pengguna melalui pemahaman SOP secara bertahap dan interaktif, tidak sekadar mereplikasi urutan dokumen.
+        1. Navigasi Utama (Sticky): Memungkinkan akses cepat ke setiap bagian utama aplikasi.
+        2. Bagian Hero/Selamat Datang: Menyajikan tujuan utama SOP secara ringkas dan menarik, mengajak pengguna untuk menjelajah.
+        3. Prinsip Inti: Mengubah "Prinsip Dasar" SOP menjadi kartu-kartu visual yang mudah dicerna, menekankan fondasi SOP.
+        4. Visualisasi Alur Proses: Menyajikan "Alur Proses" sebagai diagram langkah-demi-langkah interaktif (HTML/CSS) yang dapat dipahami dengan cepat.
+        5. Tim & Peran: Memperkenalkan "Penanggung Jawab" dengan kartu informatif untuk setiap peran kunci.
+        6. Panduan SOP Rinci (Interaktif): Menggunakan mekanisme accordion untuk "Prosedur Detail", memungkinkan pengguna fokus pada satu tahap tanpa terdistraksi oleh detail lainnya. Ini memfasilitasi pemahaman mendalam secara bertahap.
+        7. Referensi Dokumen: Menampilkan "Dokumen Terkait" sebagai daftar yang jelas dan mudah diakses.
+        8. Dashboard Kinerja (KPI): Menyajikan "Indikator Kinerja Utama" melalui chart interaktif (Chart.js) dan tampilan angka besar, memberikan gambaran kuantitatif dampak SOP.
+        9. Refleksi & Manfaat: Bagian kesimpulan yang merangkum manfaat dan pentingnya SOP.
+        Struktur ini dipilih karena memecah informasi kompleks menjadi bagian-bagian yang lebih kecil dan terkelola, memfasilitasi eksplorasi non-linear sesuai minat pengguna, dan menggunakan interaktivitas (accordion, chart) untuk meningkatkan keterlibatan dan pemahaman.
+    -->
+    <!-- Visualization & Content Choices: 
+        - SOP A.1 (Tujuan Utama) -> Inform -> Teks utama di Hero, ikon Unicode (🎯, 🛒) -> Statis -> HTML/CSS.
+        - SOP A.2 (Prinsip Dasar) -> Organize/Inform -> Kartu (Tailwind) dengan ikon Unicode (⏱️, ✅, 📊, 🌟, 🔄, ✍️) & deskripsi singkat -> Statis -> HTML/CSS.
+        - SOP B (Alur Proses) -> Organize/Process -> Diagram langkah horizontal/vertikal (div, border, panah Unicode →, ↓) -> Efek hover untuk interaksi ringan -> HTML/CSS (Tailwind).
+        - SOP C.3 (Penanggung Jawab) -> Organize/Inform -> Kartu (Tailwind) per peran dengan ikon Unicode (🧑‍💼, 🧑‍💻, 👷) & ringkasan tanggung jawab -> Statis -> HTML/CSS.
+        - SOP C.5 (Prosedur Detail) -> Organize/Inform/Explore -> Accordion interaktif (setiap sub-bab C.5.1-C.5.8 jadi satu item) -> Klik untuk buka/tutup detail -> HTML/CSS/Vanilla JS.
+        - SOP C.6 (Dokumen Terkait) -> Organize/Inform -> Daftar visual (Tailwind) dengan ikon Unicode 📄 -> Statis -> HTML/CSS.
+        - SOP C.7 (KPI) -> Inform/Compare/Explore -> 
+            - OSA: Donut Chart (Chart.js/Canvas)
+            - Akurasi Stok: Donut Chart (Chart.js/Canvas)
+            - Waktu Siklus: Bar Chart (Chart.js/Canvas)
+            - Keluhan Pelanggan: Tampilan Angka Besar (HTML/CSS)
+            - Kepatuhan FIFO/FEFO: Donut Chart (Chart.js/Canvas)
+            - Efisiensi Picking: Bar Chart (Chart.js/Canvas)
+          -> Chart.js responsif, label wrapping, tooltip config, interaktif saat hover -> Chart.js/Canvas.
+        - Kesimpulan (Manfaat SOP) -> Inform -> Teks ringkasan -> Statis -> HTML/CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA; /* Light Grayish White */
+            color: #343A40; /* Dark Gray */
+            scroll-behavior: smooth;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px; 
+            margin-left: auto;
+            margin-right: auto;
+            height: 260px; 
+            max-height: 300px; 
+        }
+        @media (min-width: 768px) { /* md */
+            .chart-container {
+                height: 280px;
+                max-height: 320px;
+            }
+        }
+        .app-card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.25rem; /* p-5 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* shadow-md */
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            border: 1px solid #E9ECEF; /* Light border */
+        }
+        .app-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04); /* shadow-lg */
+        }
+        .app-section-title {
+            font-size: 1.75rem; /* text-2xl atau text-3xl */
+            font-weight: 700; /* font-bold */
+            color: #007BFF; /* Calm Blue */
+            margin-bottom: 0.75rem; /* mb-3 */
+            text-align: center;
+        }
+        .app-section-subtitle {
+            font-size: 1.05rem; /* text-md atau text-lg */
+            color: #6C757D; /* Medium Gray */
+            margin-bottom: 2rem; /* mb-8 */
+            text-align: center;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .flow-step-item {
+            background-color: #FFFFFF;
+            border: 1px solid #17A2B8; /* Soft Teal */
+            color: #343A40;
+            padding: 0.75rem 1rem; /* p-3 p-4 */
+            border-radius: 0.5rem; /* rounded-lg */
+            text-align: center;
+            font-weight: 500; /* font-medium */
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .flow-step-item:hover {
+            background-color: #E0F7FA; /* Lighter Teal hover */
+            border-color: #007BFF;
+        }
+        .flow-arrow-icon {
+            font-size: 1.75rem; /* text-2xl */
+            color: #007BFF; /* Calm Blue */
+            margin: 0.25rem 0;
+            text-align: center;
+        }
+        .accordion-trigger {
+            background-color: #E9F5FF; /* Lighter Calm Blue */
+            color: #0056b3; /* Darker Calm Blue */
+            padding: 0.875rem 1.25rem; /* p-3.5 p-5 */
+            width: 100%;
+            text-align: left;
+            border: 1px solid #BEE0FF;
+            border-radius: 0.375rem; /* rounded-md */
+            font-weight: 600; /* font-semibold */
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-trigger:hover {
+            background-color: #D4E9FF; 
+        }
+        .accordion-panel {
+            background-color: #FFFFFF;
+            padding: 1.25rem; /* p-5 */
+            border: 1px solid #DEE2E6; 
+            border-top: none;
+            border-radius: 0 0 0.375rem 0.375rem; /* rounded-b-md */
+            display: none; 
+        }
+        .accordion-panel.active {
+            display: block;
+        }
+        .app-sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid #E9ECEF;
+        }
+        .app-nav-link {
+            transition: color 0.2s ease, border-bottom-color 0.2s ease;
+            padding-top: 0.75rem; padding-bottom: 0.75rem; /* py-3 */
+            border-bottom-width: 3px;
+        }
+        .app-nav-link.active {
+            color: #007BFF; /* Calm Blue */
+            border-bottom-color: #007BFF;
+        }
+        .app-nav-link:hover {
+            color: #0056b3;
+        }
+        .kpi-value-large {
+            font-size: 3rem; /* text-5xl */
+            font-weight: 700; /* font-bold */
+            color: #17A2B8; /* Soft Teal */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <nav id="appNavbar" class="app-sticky-nav">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center items-center space-x-2 sm:space-x-3 md:space-x-5 text-xs sm:text-sm">
+                <a href="index.html" class="font-medium text-gray-700 border-transparent">SOP Gudanng</a>
+                <a href="#hero" class="app-nav-link font-medium text-gray-700 border-transparent">Beranda</a>
+                <a href="#principles" class="app-nav-link font-medium text-gray-700 border-transparent">Prinsip</a>
+                <a href="#processflow" class="app-nav-link font-medium text-gray-700 border-transparent">Alur Proses</a>
+                <a href="#roles" class="app-nav-link font-medium text-gray-700 border-transparent">Peran</a>
+                <a href="#sopdetails" class="app-nav-link font-medium text-gray-700 border-transparent">Detail SOP</a>
+                <a href="#documents" class="app-nav-link font-medium text-gray-700 border-transparent">Dokumen</a>
+                <a href="#kpidashboard" class="app-nav-link font-medium text-gray-700 border-transparent">KPI</a>
+                <a href="#conclusion" class="app-nav-link font-medium text-gray-700 border-transparent">Kesimpulan</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+
+        <section id="hero" class="py-10 md:py-16 text-center">
+            <span class="text-5xl md:text-6xl block mb-4">🛍️</span>
+            <h1 class="text-3xl md:text-4xl font-bold mb-3" style="color: #007BFF;">SOP Pengeluaran Barang ke Etalase Kasir</h1>
+            <p class="app-section-subtitle">Panduan interaktif untuk memahami alur pengeluaran barang yang efisien, memastikan ketersediaan produk optimal di etalase kasir, mendukung promosi, menjaga akurasi stok, dan meningkatkan kepuasan pelanggan.</p>
+        </section>
+
+        <section id="principles" class="py-10 md:py-12">
+            <h2 class="app-section-title">Prinsip Inti Operasional</h2>
+            <p class="app-section-subtitle">Dasar-dasar fundamental yang menopang efektivitas dan efisiensi alur pengeluaran barang ke etalase.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div class="app-card">
+                    <div class="text-3xl mb-2" style="color: #17A2B8;">🎯</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Permintaan Terencana</h3>
+                    <p class="text-sm text-gray-600">Pengeluaran berbasis kebutuhan aktual, data penjualan, dan rencana promosi.</p>
+                </div>
+                <div class="app-card">
+                    <div class="text-3xl mb-2" style="color: #17A2B8;">✅</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Akurasi Stok</h3>
+                    <p class="text-sm text-gray-600">Setiap pergerakan barang tercatat akurat dalam sistem secara *real-time*.</p>
+                </div>
+                <div class="app-card">
+                    <div class="text-3xl mb-2" style="color: #17A2B8;">⏱️</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Efisiensi Proses</h3>
+                    <p class="text-sm text-gray-600">Alur kerja yang jelas, sederhana, dan meminimalkan waktu serta tenaga.</p>
+                </div>
+                <div class="app-card">
+                    <div class="text-3xl mb-2" style="color: #17A2B8;">🌟</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Kualitas Barang Terjaga</h3>
+                    <p class="text-sm text-gray-600">Hanya produk prima (kemasan baik, tidak rusak/kedaluwarsa) yang dipajang.</p>
+                </div>
+                <div class="app-card">
+                    <div class="text-3xl mb-2" style="color: #17A2B8;">🔄</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">FIFO / FEFO</h3>
+                    <p class="text-sm text-gray-600">Rotasi stok konsisten untuk minimalisir risiko barang kedaluwarsa.</p>
+                </div>
+                <div class="app-card">
+                    <div class="text-3xl mb-2" style="color: #17A2B8;">✍️</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Dokumentasi Jelas</h3>
+                    <p class="text-sm text-gray-600">Setiap transaksi didukung bukti untuk audit dan pelacakan.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="processflow" class="py-10 md:py-12 bg-gray-50 rounded-xl shadow-inner my-10">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <h2 class="app-section-title">Visualisasi Alur Proses Utama</h2>
+                <p class="app-section-subtitle">Delapan langkah kunci dari identifikasi kebutuhan hingga barang siap dijual di etalase kasir.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-3 items-stretch">
+                    <div class="flow-step-item"><span class="text-2xl mb-1">1️⃣</span>Identifikasi Kebutuhan Etalase</div>
+                    <div class="hidden sm:flex items-center justify-center"><div class="flow-arrow-icon">→</div></div>
+                    <div class="flex sm:hidden items-center justify-center"><div class="flow-arrow-icon">↓</div></div>
+                    
+                    <div class="flow-step-item"><span class="text-2xl mb-1">2️⃣</span>Buat Permintaan (FPB)</div>
+                    <div class="hidden lg:flex items-center justify-center"><div class="flow-arrow-icon">→</div></div>
+                    <div class="flex lg:hidden items-center justify-center"><div class="flow-arrow-icon">↓</div></div>
+
+                    <div class="flow-step-item"><span class="text-2xl mb-1">3️⃣</span>Persetujuan (Jika Perlu)</div>
+                    <div class="hidden sm:flex items-center justify-center"><div class="flow-arrow-icon">→</div></div>
+                    <div class="flex sm:hidden items-center justify-center"><div class="flow-arrow-icon">↓</div></div>
+                    
+                    <div class="flow-step-item"><span class="text-2xl mb-1">4️⃣</span>Ambil Barang (Picking)</div>
+                     <div class="col-span-1 sm:col-span-2 lg:col-span-4 flex items-center justify-center my-1"><div class="flow-arrow-icon">↓</div></div>
+
+                    <div class="flow-step-item"><span class="text-2xl mb-1">5️⃣</span>Verifikasi & Catat Keluar (BPBI)</div>
+                    <div class="hidden sm:flex items-center justify-center"><div class="flow-arrow-icon">→</div></div>
+                    <div class="flex sm:hidden items-center justify-center"><div class="flow-arrow-icon">↓</div></div>
+
+                    <div class="flow-step-item"><span class="text-2xl mb-1">6️⃣</span>Serah Terima Barang</div>
+                    <div class="hidden lg:flex items-center justify-center"><div class="flow-arrow-icon">→</div></div>
+                    <div class="flex lg:hidden items-center justify-center"><div class="flow-arrow-icon">↓</div></div>
+
+                    <div class="flow-step-item"><span class="text-2xl mb-1">7️⃣</span>Tata Barang di Etalase</div>
+                    <div class="hidden sm:flex items-center justify-center"><div class="flow-arrow-icon">→</div></div>
+                     <div class="flex sm:hidden items-center justify-center"><div class="flow-arrow-icon">↓</div></div>
+
+                    <div class="flow-step-item"><span class="text-2xl mb-1">8️⃣</span>Update Stok Sistem</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roles" class="py-10 md:py-12">
+            <h2 class="app-section-title">Tim & Peran Kunci</h2>
+            <p class="app-section-subtitle">Kolaborasi antar peran memastikan setiap langkah SOP berjalan lancar dan bertanggung jawab.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="app-card text-center">
+                    <div class="text-3xl mb-2">💁</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Staf Kasir/Penjualan</h3>
+                    <p class="text-xs text-gray-500">Identifikasi kebutuhan, buat FPB, terima & tata barang.</p>
+                </div>
+                <div class="app-card text-center">
+                    <div class="text-3xl mb-2">🧑‍✈️</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Kepala Toko/Supervisor</h3>
+                    <p class="text-xs text-gray-500">Setujui FPB, awasi proses, pastikan standar.</p>
+                </div>
+                <div class="app-card text-center">
+                    <div class="text-3xl mb-2">📦</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Staf Gudang Toko</h3>
+                    <p class="text-xs text-gray-500">Terima FPB, ambil barang, verifikasi, serahkan barang.</p>
+                </div>
+                <div class="app-card text-center">
+                    <div class="text-3xl mb-2">💻</div>
+                    <h3 class="text-lg font-semibold mb-1" style="color: #007BFF;">Admin Stok/Sistem</h3>
+                    <p class="text-xs text-gray-500">Update data stok di sistem secara akurat & *real-time*.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sopdetails" class="py-10 md:py-12 bg-gray-50 rounded-xl shadow-inner my-10">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <h2 class="app-section-title">Panduan SOP Rinci (Interaktif)</h2>
+                <p class="app-section-subtitle">Jelajahi setiap tahapan prosedur secara mendalam. Klik pada setiap judul untuk melihat detail langkah-langkahnya.</p>
+                <div class="space-y-2" id="sopAccordionContainer">
+                </div>
+            </div>
+        </section>
+
+        <section id="documents" class="py-10 md:py-12">
+            <h2 class="app-section-title">Referensi Dokumen Kunci</h2>
+            <p class="app-section-subtitle">Dokumentasi standar yang mendukung kelancaran dan akuntabilitas proses.</p>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+                <div class="app-card flex items-center space-x-3">
+                    <span class="text-2xl" style="color: #17A2B8;">📄</span>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #007BFF;">Formulir Permintaan Barang (FPB)</h3>
+                        <p class="text-xs text-gray-500">Dasar permintaan pengisian stok.</p>
+                    </div>
+                </div>
+                <div class="app-card flex items-center space-x-3">
+                    <span class="text-2xl" style="color: #17A2B8;">🧾</span>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #007BFF;">Bukti Pengeluaran Barang Internal (BPBI)</h3>
+                        <p class="text-xs text-gray-500">Bukti barang keluar dari gudang.</p>
+                    </div>
+                </div>
+                <div class="app-card flex items-center space-x-3">
+                    <span class="text-2xl" style="color: #17A2B8;">📈</span>
+                    <div>
+                        <h3 class="text-md font-semibold" style="color: #007BFF;">Laporan Stok Sistem</h3>
+                        <p class="text-xs text-gray-500">Untuk verifikasi dan monitoring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kpidashboard" class="py-10 md:py-12 bg-gray-50 rounded-xl shadow-inner my-10">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <h2 class="app-section-title">Dashboard Kinerja Proses</h2>
+                <p class="app-section-subtitle">Pantau efektivitas implementasi SOP melalui Indikator Kinerja Utama (KPI) berikut.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-6">
+                    <div class="app-card text-center">
+                        <h3 class="text-md font-semibold mb-2" style="color:#007BFF;">Ketersediaan Produk Etalase (OSA)</h3>
+                        <div class="chart-container">
+                            <canvas id="appKpiOsaChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Target: >98%</p>
+                    </div>
+                    <div class="app-card text-center">
+                        <h3 class="text-md font-semibold mb-2" style="color:#007BFF;">Akurasi Stok Etalase</h3>
+                        <div class="chart-container">
+                            <canvas id="appKpiAkurasiStokChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Target: >99%</p>
+                    </div>
+                    <div class="app-card text-center">
+                        <h3 class="text-md font-semibold mb-2" style="color:#007BFF;">Waktu Siklus Pemenuhan</h3>
+                        <div class="chart-container">
+                            <canvas id="appKpiWaktuSiklusChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Target: <30 Menit</p>
+                    </div>
+                    <div class="app-card text-center flex flex-col justify-center items-center">
+                         <h3 class="text-md font-semibold mb-2" style="color:#007BFF;">Keluhan Pelanggan (Stok Kosong)</h3>
+                        <p class="kpi-value-large my-3">0</p>
+                        <p class="text-xs text-gray-500">Target: Nol Keluhan Valid</p>
+                    </div>
+                    <div class="app-card text-center">
+                        <h3 class="text-md font-semibold mb-2" style="color:#007BFF;">Kepatuhan FIFO/FEFO</h3>
+                        <div class="chart-container">
+                            <canvas id="appKpiFifoFefoChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Target: 100%</p>
+                    </div>
+                     <div class="app-card text-center">
+                        <h3 class="text-md font-semibold mb-2" style="color:#007BFF;">Efisiensi Picking</h3>
+                        <div class="chart-container">
+                            <canvas id="appKpiEfisiensiPickingChart"></canvas>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Contoh: Item/Jam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="py-10 md:py-16 text-center bg-gradient-to-br from-blue-600 to-teal-400 text-white rounded-xl shadow-lg my-10" style="background-image: linear-gradient(to br, #007BFF, #17A2B8);">
+             <div class="px-4 sm:px-6 lg:px-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-3">Membangun Keunggulan Operasional Ritel</h2>
+                <p class="text-md md:text-lg mb-5 max-w-xl mx-auto leading-relaxed">Implementasi SOP pengeluaran barang yang efektif adalah investasi strategis untuk kepuasan pelanggan, efisiensi biaya, dan pertumbuhan penjualan yang berkelanjutan di lingkungan ritel yang kompetitif.</p>
+                <span class="text-4xl block">💡</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-6 text-xs text-gray-500 border-t border-gray-200">
+        Aplikasi Interaktif ini didasarkan pada SOP Alur Pengeluaran Barang ke Etalase Kasir. <br>
+        &copy; <span id="appCurrentYear"></span> Perusahaan Retail Anda. Hak Cipta Dilindungi Undang-Undang.
+    </footer>
+
+    <script>
+        document.getElementById('appCurrentYear').textContent = new Date().getFullYear();
+
+        const appSopStepsData = [
+            { title: "5.1. Identifikasi Kebutuhan & Kondisi Barang Etalase", 
+              pelaksana: "Staf Kasir / Staf Penjualan Etalase", 
+              frekuensi: "Secara berkala (awal shift, tengah hari) atau minimal 1x sehari.",
+              langkah: [
+                "Periksa visual level stok di etalase.",
+                "Bandingkan dengan level min/max etalase (jika ada panduan).",
+                "Identifikasi item menipis, habis, atau tidak layak jual (tarik segera).",
+                "Catat kebutuhan item baru (promosi, arahan visual merchandising).",
+                "Buat daftar sementara kebutuhan (item, perkiraan kuantitas)."
+              ]
+            },
+            { title: "5.2. Pembuatan Formulir Permintaan Barang (FPB)", 
+              pelaksana: "Staf Kasir / Staf Penjualan Etalase",
+              media: "Formulir FPB fisik standar atau input sistem aplikasi.",
+              langkah: [
+                "Isi FPB lengkap & jelas: Tgl, Peminta, Kode/Nama Barang, Satuan, Kuantitas Diminta, Keterangan.",
+                "Pastikan kuantitas diminta realistis (sesuai kapasitas etalase & laju jual)."
+              ]
+            },
+            { title: "5.3. Persetujuan Permintaan Barang (Opsional)", 
+              pelaksana: "Kepala Toko / Supervisor Kasir / Supervisor Penjualan",
+              langkah: [
+                "Terima FPB dari staf.",
+                "Review FPB: kelengkapan, kewajaran, urgensi, ketersediaan stok umum.",
+                "Beri persetujuan (TTD fisik / approval sistem) atau revisi dengan alasan.",
+                "FPB disetujui diteruskan ke Gudang Toko/Petugas Stok."
+              ]
+            },
+            { title: "5.4. Persiapan & Pengambilan Barang di Gudang (Picking)", 
+              pelaksana: "Staf Gudang Toko / Petugas Stok Internal",
+              dasar: "FPB yang telah diterima (dan disetujui).",
+              langkah: [
+                "Pahami detail permintaan pada FPB.",
+                "Cari & ambil barang dari lokasi penyimpanan sesuai FPB.",
+                "WAJIB: Terapkan prinsip FIFO atau FEFO secara konsisten.",
+                "Periksa kondisi fisik & ED barang yang diambil. Pisahkan yang tidak standar.",
+                "Kumpulkan barang di area transit pengeluaran."
+              ]
+            },
+            { title: "5.5. Verifikasi & Pembuatan Bukti Pengeluaran Internal (BPBI)", 
+              pelaksana: "Staf Gudang Toko / Petugas Stok Internal",
+              langkah: [
+                "Verifikasi ulang (double check) kesesuaian barang diambil dengan FPB.",
+                "Jika stok kurang, catat di FPB & informasikan (peminta bisa revisi/tunggu).",
+                "Buat BPBI: No. BPBI, Tgl Keluar, No. FPB Ref, Detail Barang Keluar, Nama Petugas.",
+                "Jika via sistem, bisa terintegrasi saat transaksi 'Issue Stock'."
+              ]
+            },
+            { title: "5.6. Serah Terima Barang ke Area Kasir/Peminta", 
+              pelaksana: "Staf Gudang Toko & Staf Kasir/Penjualan Etalase (Peminta)",
+              langkah: [
+                "Staf Gudang bawa barang & BPBI/FPB tervalidasi ke peminta.",
+                "Pengecekan bersama: jenis, kuantitas, kondisi barang.",
+                "Jika sesuai, kedua pihak TTD bukti serah terima. Salinan untuk arsip masing-masing.",
+                "Jika ada ketidaksesuaian, segera selesaikan atau catat sebagai temuan."
+              ]
+            },
+            { title: "5.7. Penataan Barang di Etalase Kasir", 
+              pelaksana: "Staf Kasir / Staf Penjualan Etalase",
+              langkah: [
+                "Segera tata barang yang diterima di etalase.",
+                "Terapkan FIFO/FEFO: barang lama/ED dekat di depan/atas.",
+                "Pastikan pajangan rapi, menarik, sesuai standar visual merchandising.",
+                "Pastikan label harga benar, jelas, dan sesuai sistem.",
+                "Bersihkan area etalase."
+              ]
+            },
+            { title: "5.8. Pembaruan Data Stok di Sistem (Real-time)", 
+              pelaksana: "Admin Stok / Staf Kasir Senior / Kepala Toko (sesuai hak akses)",
+              dasar: "BPBI atau FPB yang telah divalidasi & TTD serah terima.",
+              langkah: [
+                "Segera (maks. akhir shift) update stok di sistem POS/Inventori.",
+                "Proses sistem: 'Transfer Stok Antar Lokasi Internal' atau 'Pengeluaran Stok untuk Display'.",
+                "Input No. BPBI/FPB sebagai referensi transaksi.",
+                "Pastikan detail transaksi benar & tersimpan. Krusial untuk akurasi inventaris."
+              ]
+            }
+        ];
+
+        const appAccordionContainer = document.getElementById('sopAccordionContainer');
+        appSopStepsData.forEach(step => {
+            const triggerButton = document.createElement('button');
+            triggerButton.className = 'accordion-trigger';
+            triggerButton.innerHTML = `<span>${step.title}</span> <span class="plus-minus-icon text-xl font-light transition-transform duration-200 transform">+</span>`;
+            
+            const panelContent = document.createElement('div');
+            panelContent.className = 'accordion-panel';
+            let contentHTML = `<p class="text-sm text-gray-600 mb-2"><strong>Pelaksana:</strong> ${step.pelaksana}</p>`;
+            if(step.frekuensi) contentHTML += `<p class="text-sm text-gray-600 mb-2"><strong>Frekuensi:</strong> ${step.frekuensi}</p>`;
+            if(step.media) contentHTML += `<p class="text-sm text-gray-600 mb-2"><strong>Media:</strong> ${step.media}</p>`;
+            if(step.dasar) contentHTML += `<p class="text-sm text-gray-600 mb-2"><strong>Dasar:</strong> ${step.dasar}</p>`;
+            contentHTML += '<strong class="text-sm text-gray-700">Langkah-langkah:</strong><ul class="list-disc list-inside text-sm text-gray-600 mt-1 space-y-1">';
+            step.langkah.forEach(l => {
+                contentHTML += `<li>${l.replace(/\*(.*?)\*/g, "<strong>$1</strong>")}</li>`;
+            });
+            contentHTML += '</ul>';
+            panelContent.innerHTML = contentHTML;
+            
+            appAccordionContainer.appendChild(triggerButton);
+            appAccordionContainer.appendChild(panelContent);
+            
+            triggerButton.addEventListener('click', () => {
+                const isActive = panelContent.classList.contains('active');
+                const icon = triggerButton.querySelector('.plus-minus-icon');
+                if (isActive) {
+                    panelContent.classList.remove('active');
+                    icon.textContent = '+';
+                    icon.classList.remove('rotate-45');
+                } else {
+                    panelContent.classList.add('active');
+                    icon.textContent = '-'; // Atau bisa pakai karakter '×' atau rotasi '+'
+                    icon.classList.add('rotate-45');
+                }
+            });
+        });
+
+        const appNavLinks = document.querySelectorAll('.app-nav-link');
+        const appSections = document.querySelectorAll('main section');
+
+        function appChangeNavOnScroll(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    appNavLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        const appScrollObserver = new IntersectionObserver(appChangeNavOnScroll, { threshold: 0.25, rootMargin: "-60px 0px -60px 0px" });
+        appSections.forEach(section => appScrollObserver.observe(section));
+        
+        appNavLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.getElementById('appNavbar').offsetHeight;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 15; 
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        function appFormatChartLabel(str, maxLen = 14) {
+            if (typeof str !== 'string' || str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLen && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                } else { currentLine += word + ' '; }
+            }
+            if (currentLine.trim().length > 0) lines.push(currentLine.trim());
+            return lines.length > 0 ? lines : [str];
+        }
+
+        const appChartTooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const appDefaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: '#6C757D', font: { size: 10 } } },
+                tooltip: {
+                    callbacks: { title: appChartTooltipTitleCallback },
+                    bodyColor: '#343A40', titleColor: '#007BFF',
+                    backgroundColor: 'rgba(255,255,255,0.95)', borderColor: '#17A2B8', borderWidth: 1,
+                    padding: 10, titleFont: { weight: 'bold'}, bodyFont: {size: 11}
+                }
+            },
+            scales: {
+                y: { beginAtZero: true, ticks: { color: '#6C757D', font: {size: 10} }, grid: { color: '#E9ECEF' } },
+                x: { ticks: { color: '#6C757D', font: {size: 10} }, grid: { display: false } }
+            }
+        };
+        
+        const appChartColors = ['#007BFF', '#17A2B8', '#28A745', '#FFC107', '#DC3545'];
+
+        new Chart(document.getElementById('appKpiOsaChart'), {
+            type: 'doughnut',
+            data: { labels: [appFormatChartLabel('Tersedia (%)'), appFormatChartLabel('Tidak Tersedia (%)')], datasets: [{ data: [98.2, 1.8], backgroundColor: [appChartColors[0], '#E9ECEF'], borderWidth: 1 }] },
+            options: {...appDefaultChartOptions, cutout: '65%'}
+        });
+        new Chart(document.getElementById('appKpiAkurasiStokChart'), {
+            type: 'doughnut',
+            data: { labels: [appFormatChartLabel('Akurat (%)'), appFormatChartLabel('Selisih (%)')], datasets: [{ data: [99.1, 0.9], backgroundColor: [appChartColors[1], '#E9ECEF'], borderWidth: 1 }] },
+            options: {...appDefaultChartOptions, cutout: '65%'}
+        });
+        new Chart(document.getElementById('appKpiWaktuSiklusChart'), {
+            type: 'bar',
+            data: { labels: [appFormatChartLabel('Target (Menit)'), appFormatChartLabel('Realisasi (Menit)')], datasets: [{ data: [30, 22], backgroundColor: [appChartColors[0], appChartColors[2]], borderRadius: 3, barPercentage: 0.5 }] },
+            options: {...appDefaultChartOptions, plugins: {...appDefaultChartOptions.plugins, legend: {display: false}}}
+        });
+        new Chart(document.getElementById('appKpiFifoFefoChart'), {
+            type: 'doughnut',
+            data: { labels: [appFormatChartLabel('Patuhi FIFO/FEFO (%)'), appFormatChartLabel('Tidak Patuh (%)')], datasets: [{ data: [96, 4], backgroundColor: [appChartColors[2], '#E9ECEF'], borderWidth: 1 }] },
+            options: {...appDefaultChartOptions, cutout: '65%'}
+        });
+        new Chart(document.getElementById('appKpiEfisiensiPickingChart'), {
+            type: 'bar',
+            data: { labels: [appFormatChartLabel('Target (Item/Jam)'), appFormatChartLabel('Realisasi (Item/Jam)')], datasets: [{ data: [45, 48], backgroundColor: [appChartColors[3], appChartColors[1]], borderRadius: 3, barPercentage: 0.5 }] },
+            options: {...appDefaultChartOptions, plugins: {...appDefaultChartOptions.plugins, legend: {display: false}}}
+        });
+    </script>
+</body>
+</html>
