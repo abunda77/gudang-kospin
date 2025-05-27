@@ -7,17 +7,20 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 ### I. Fitur Umum & Dasar
 
 #### Autentikasi & Manajemen Pengguna
+
 - Login & Logout Pengguna
 - Manajemen Peran Pengguna (Admin Gudang, Staf Gudang, Kepala Gudang, Tim Pembelian, Super Admin)
 - Manajemen Hak Akses berdasarkan Peran
 - Profil Pengguna
 
 #### Dashboard
+
 - Tampilan ringkasan statistik kunci (PO menunggu, GRN hari ini, item butuh perhatian)
 - Grafik performa gudang
 - Daftar tugas atau notifikasi penting
 
 #### Manajemen Data Master
+
 - Manajemen Suplier
 - Manajemen Produk/Barang
 - Manajemen Gudang & Lokasi Penyimpanan
@@ -25,34 +28,40 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 ### II. Fitur Berdasarkan Tahapan SOP Penerimaan Barang
 
 #### 1. Modul Purchase Order (PO)
+
 - Pembuatan dan pengelolaan PO
 - Persetujuan PO
 - Pelacakan status pengiriman
 - Cetak/Unduh PO dalam format PDF
 
 #### 2. Modul Penerimaan Barang
+
 - Validasi Surat Jalan (SJ/DO)
 - Proses verifikasi barang
 - Pencatatan barang diterima/ditolak
 - Upload bukti ketidaksesuaian
 
 #### 3. Modul Goods Received Note (GRN/BPB)
+
 - Pembuatan GRN otomatis
 - Update stok real-time
 - Manajemen daftar GRN
 - Cetak/unduh GRN
 
 #### 4. Modul Laporan Ketidaksesuaian
+
 - Pembuatan laporan ketidaksesuaian
 - Pelacakan status penyelesaian
 - Komunikasi internal
 
 #### 5. Modul Penyimpanan Barang (Putaway)
+
 - Rekomendasi lokasi penyimpanan
 - Pencatatan lokasi aktual
 - Update lokasi stok
 
 #### 6. Modul Manajemen Stok
+
 - Visualisasi stok real-time
 - Histori pergerakan stok
 - Peringatan stok minimum/maksimum
@@ -69,6 +78,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 ### Tabel Utama
 
 #### 1. Pengguna (Users)
+
 - id (PK)
 - name
 - email
@@ -80,6 +90,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 2. Peran (Roles)
+
 - id (PK)
 - name
 - description
@@ -88,6 +99,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 3. Suplier (Suppliers)
+
 - id (PK)
 - kode_suplier
 - nama
@@ -100,6 +112,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 4. Kategori Produk (ProductCategories)
+
 - id (PK)
 - nama
 - deskripsi
@@ -107,6 +120,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 5. Produk (Products)
+
 - id (PK)
 - kode_produk
 - nama
@@ -124,6 +138,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 6. Gudang (Warehouses)
+
 - id (PK)
 - kode_gudang
 - nama
@@ -134,6 +149,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 7. Lokasi Penyimpanan (StorageLocations)
+
 - id (PK)
 - gudang_id (FK ke Warehouses)
 - kode_lokasi
@@ -145,6 +161,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 8. Purchase Order (PurchaseOrders)
+
 - id (PK)
 - nomor_po
 - suplier_id (FK ke Suppliers)
@@ -159,6 +176,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 9. Detail PO (PurchaseOrderDetails)
+
 - id (PK)
 - po_id (FK ke PurchaseOrders)
 - produk_id (FK ke Products)
@@ -171,6 +189,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 10. Penerimaan Barang (GoodsReceipts)
+
 - id (PK)
 - nomor_grn
 - po_id (FK ke PurchaseOrders)
@@ -185,6 +204,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 11. Detail Penerimaan (GoodsReceiptDetails)
+
 - id (PK)
 - goods_receipt_id (FK ke GoodsReceipts)
 - product_id (FK ke Products)
@@ -199,6 +219,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 12. Laporan Ketidaksesuaian (DiscrepancyReports)
+
 - id (PK)
 - nomor_laporan
 - goods_receipt_id (FK ke GoodsReceipts)
@@ -213,6 +234,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 13. Detail Ketidaksesuaian (DiscrepancyReportDetails)
+
 - id (PK)
 - report_id (FK ke DiscrepancyReports)
 - product_id (FK ke Products)
@@ -224,6 +246,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 14. Stok (Inventories)
+
 - id (PK)
 - product_id (FK ke Products)
 - location_id (FK ke StorageLocations)
@@ -234,6 +257,7 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 - updated_at
 
 #### 15. Riwayat Stok (InventoryTransactions)
+
 - id (PK)
 - inventory_id (FK ke Inventories)
 - transaction_type (masuk/keluar/adjustment)
@@ -246,13 +270,15 @@ Aplikasi web untuk mengelola operasional gudang retail modern dengan fitur lengk
 
 ## Teknologi yang Digunakan
 
-- **Frontend**: 
+- **Frontend**:
+
   - HTML5, CSS3, JavaScript
   - Tailwind CSS
   - Chart.js
   - Responsive Design
 
 - **Backend**:
+
   - PHP 8.0+
   - Laravel 9.x
   - MySQL 8.0+
@@ -295,7 +321,7 @@ Kontribusi untuk pengembangan aplikasi ini sangat diterima. Silakan buat branch 
 
 ## Lisensi
 
-Hak Cipta © 2023 Perusahaan Retail Anda. Hak Cipta Dilindungi.
+Hak Cipta © 2025 Sinara Artha. Hak Cipta Dilindungi.
 
 ---
 
