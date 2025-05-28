@@ -16,28 +16,36 @@ function changeNav(entries) {
 
 // Fungsi untuk memformat label chart
 function formatLabel(str, maxLen = 16) {
-    if (typeof str !== 'string' || str.length <= maxLen) {
-        return str;
+    if (typeof str !== 'string') {
+        return String(str);
     }
-    const words = str.split(' ');
-    const lines = [];
-    let currentLine = '';
-    
-    for (const word of words) {
-        if ((currentLine + word).length > maxLen && currentLine.length > 0) {
-            lines.push(currentLine.trim());
-            currentLine = word + ' ';
-        } else {
-            currentLine += word + ' ';
-        }
+    if (str.length <= maxLen) {
+         return str;
+     }
+     const words = str.split(' ');
+    if (words.length === 1) {
+        // Handle single long word by character splitting if needed
+        return str.length > maxLen ? [str.substring(0, maxLen - 1) + '...'] : [str];
     }
-    
-    if (currentLine.trim().length > 0) {
-        lines.push(currentLine.trim());
-    }
-    
+     const lines = [];
+     let currentLine = '';
+     
+     for (const word of words) {
+        const testLine = currentLine + word;
+        if (testLine.length > maxLen && currentLine.length > 0) {
+             lines.push(currentLine.trim());
+             currentLine = word + ' ';
+         } else {
+            currentLine = testLine + ' ';
+         }
+     }
+     
+     if (currentLine.trim().length > 0) {
+         lines.push(currentLine.trim());
+     }
+     
     return lines.length > 0 ? lines : [str];
-}
+ }
 
 // Fungsi untuk tooltip chart
 const tooltipTitleCallback = function(tooltipItems) {
@@ -89,24 +97,28 @@ const chartColors = ['#2A6EBC', '#559BD8', '#80C9F3', '#004299'];
 
 // Inisialisasi saat dokumen siap
 document.addEventListener('DOMContentLoaded', function() {
-    // Set tahun saat ini di footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
-    
-    // Inisialisasi smooth scrolling untuk navigasi
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
-    
-    // Smooth scrolling untuk navigasi
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const navbarHeight = document.getElementById('navbar').offsetHeight;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 10;
+     // Set tahun saat ini di footer
+    const currentYearElement = document.getElementById('currentYear');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+     
+     // Inisialisasi smooth scrolling untuk navigasi
+     const navLinks = document.querySelectorAll('.nav-link');
+     const sections = document.querySelectorAll('section');
+     
+     // Smooth scrolling untuk navigasi
+     navLinks.forEach(link => {
+         link.addEventListener('click', function(e) {
+             e.preventDefault();
+             const targetId = this.getAttribute('href');
+             const targetElement = document.querySelector(targetId);
+             
+             if (targetElement) {
+                const navbar = document.getElementById('navbar');
+                const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                 const elementPosition = targetElement.getBoundingClientRect().top;
+                 const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 10;
                 
                 window.scrollTo({
                     top: offsetPosition,
