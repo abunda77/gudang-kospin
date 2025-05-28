@@ -1,0 +1,149 @@
+/* Style untuk halaman SOP Keluar */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F8F9FA; /* Light Grayish White */
+    color: #343A40; /* Dark Gray */
+    scroll-behavior: smooth;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px; 
+    margin-left: auto;
+    margin-right: auto;
+    height: 260px; 
+    max-height: 300px; 
+}
+
+@media (min-width: 768px) { /* md */
+    .chart-container {
+        height: 280px;
+        max-height: 320px;
+    }
+}
+
+.app-card {
+    background-color: #FFFFFF;
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 1.25rem; /* p-5 */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* shadow-md */
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    border: 1px solid #E9ECEF; /* Light border */
+}
+
+.app-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.04); /* shadow-lg */
+}
+
+.app-section-title {
+    font-size: 1.75rem; /* text-2xl atau text-3xl */
+    font-weight: 700; /* font-bold */
+    color: #007BFF; /* Calm Blue */
+    margin-bottom: 0.75rem; /* mb-3 */
+    text-align: center;
+}
+
+.app-section-subtitle {
+    font-size: 1.05rem; /* text-md atau text-lg */
+    color: #6C757D; /* Medium Gray */
+    margin-bottom: 2rem; /* mb-8 */
+    text-align: center;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.flow-step-item {
+    background-color: #FFFFFF;
+    border: 1px solid #17A2B8; /* Soft Teal */
+    color: #343A40;
+    padding: 0.75rem 1rem; /* p-3 p-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    text-align: center;
+    font-weight: 500; /* font-medium */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flow-step-item:hover {
+    background-color: #E0F7FA; /* Lighter Teal hover */
+    border-color: #007BFF;
+}
+
+.flow-arrow-icon {
+    font-size: 1.75rem; /* text-2xl */
+    color: #007BFF; /* Calm Blue */
+    margin: 0.25rem 0;
+    text-align: center;
+}
+
+.accordion-trigger {
+    background-color: #E9F5FF; /* Lighter Calm Blue */
+    color: #0056b3; /* Darker Calm Blue */
+    padding: 0.875rem 1.25rem; /* p-3.5 p-5 */
+    width: 100%;
+    text-align: left;
+    border: 1px solid #BEE0FF;
+    border-radius: 0.375rem; /* rounded-md */
+    font-weight: 600; /* font-semibold */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-trigger:hover {
+    background-color: #D4E9FF; 
+}
+
+.accordion-panel {
+    background-color: #FFFFFF;
+    padding: 1.25rem; /* p-5 */
+    border: 1px solid #DEE2E6; 
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem; /* rounded-b-md */
+    display: none; 
+}
+
+.accordion-panel.active {
+    display: block;
+}
+
+.app-sticky-nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #E9ECEF;
+}
+
+.app-nav-link {
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+    padding-top: 0.75rem; 
+    padding-bottom: 0.75rem; /* py-3 */
+    border-bottom-width: 3px;
+}
+
+.app-nav-link.active {
+    color: #007BFF; /* Calm Blue */
+    border-bottom-color: #007BFF;
+}
+
+.app-nav-link:hover {
+    color: #0056b3;
+}
+
+.kpi-value-large {
+    font-size: 3rem; /* text-5xl */
+    font-weight: 700; /* font-bold */
+    color: #17A2B8; /* Soft Teal */
+}
