@@ -358,7 +358,17 @@
         &copy; <span id="currentYear"></span> Perusahaan Retail Anda. Hak Cipta Dilindungi.
     </footer>
 
-    <!-- Menghubungkan file JavaScript eksternal -->
-    <script src="/js/main.js"></script>
+    <!-- Menghubungkan file JavaScript eksternal secara dinamis berdasarkan path project -->
+    <script>
+        // Deteksi subfolder project dari URL
+        var pathParts = window.location.pathname.split('/');
+        var projectFolder = '';
+        if (pathParts.length > 1 && pathParts[1] !== '') {
+            projectFolder = '/' + pathParts[1];
+        }
+        var script = document.createElement('script');
+        script.src = projectFolder + '/js/main.js';
+        document.body.appendChild(script);
+    </script>
 </body>
 </html>
