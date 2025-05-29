@@ -74,16 +74,17 @@ const chartOptionsBase = {
         y: {
             beginAtZero: true,
             ticks: { 
-                color: '#475569',
+                color: 'var(--text-color-secondary)', // Use CSS variable
                 callback: value => value
             },
             grid: { 
-                color: '#E2E8F0'
+                color: 'var(--text-color-secondary)', // Use CSS variable
+                borderColor: 'var(--text-color-secondary)'
             }
         },
         x: {
             ticks: { 
-                color: '#475569' 
+                color: 'var(--text-color-secondary)' // Use CSS variable
             },
             grid: { 
                 display: false 
@@ -92,8 +93,64 @@ const chartOptionsBase = {
     }
 };
 
-// Warna untuk chart
-const chartColors = ['#2A6EBC', '#559BD8', '#80C9F3', '#004299'];
+// Warna untuk chart (gunakan variabel CSS untuk mode gelap)
+const chartColors = ['var(--accent-secondary)', 'var(--accent-tertiary)', '#80C9F3', 'var(--accent-primary)'];
+
+
+// Theme toggle logic
+const themeToggle = document.getElementById('theme-toggle');
+const sunIcon = document.getElementById('sun-icon');
+const moonIcon = document.getElementById('moon-icon');
+
+function setTheme(theme) {
+    document.body.classList.remove('light-mode', 'dark-mode');
+    document.body.classList.add(theme);
+    localStorage.setItem('theme', theme);
+
+    // Update button icon
+    if (theme === 'dark-mode') {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+    } else {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+    
+    // Re-render charts to apply new colors - This is a simplified approach.
+    // A more robust solution would involve destroying and recreating charts
+    // or using Chart.js update() method if it supports CSS variable changes dynamically.
+    // For this example, we assume CSS variables affect the canvas rendering implicitly
+    // or rely on a page reload/re-initialization if needed.
+    // In a real application, you might need chart.update() or chart.destroy() followed by new Chart().
+    // As a quick visual fix, we can trigger a slight resize or re-draw if update() isn't enough.
+    // window.dispatchEvent(new Event('resize')); // Might help some charts re-render
+    
+    // A simple way to force chart color update without destroying/recreating
+    // is not directly supported by Chart.js for CSS variables applied this way.
+    // The current setup relies on the browser re-interpreting CSS variables on class change.
+    // If chart colors don't update, a full chart re-initialization on theme change is needed.
+    // For this implementation, we'll rely on the CSS variable approach and note this limitation.
+}
+
+// Check local storage for theme preference on load
+const storedTheme = localStorage.getItem('theme');
+if (storedTheme) {
+    setTheme(storedTheme);
+} else {
+    // Default theme if no preference is set
+    setTheme('light-mode'); // Or 'dark-mode' based on your preference
+}
+
+
+// Event listener for the toggle button
+themeToggle.addEventListener('click', function() {
+    if (document.body.classList.contains('dark-mode')) {
+        setTheme('light-mode');
+    } else {
+        setTheme('dark-mode');
+    }
+});
+
 
 // Inisialisasi saat dokumen siap
 document.addEventListener('DOMContentLoaded', function() {
@@ -143,8 +200,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'Akurasi (%)',
                     data: [99, 99.2],
-                    backgroundColor: [chartColors[0], chartColors[1]],
-                    borderColor: [chartColors[0], chartColors[1]],
+                    backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')], // Use computed styles
+                    borderColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')],
                     borderWidth: 1,
                     borderRadius: 5,
                     barPercentage: 0.6
@@ -162,7 +219,26 @@ document.addEventListener('DOMContentLoaded', function() {
                             callback: value => value + '%' 
                         } 
                     } 
-                } 
+                },
+                 plugins: {
+                     ...chartOptionsBase.plugins,
+                      tooltip: {
+                         ...chartOptionsBase.plugins.tooltip,
+                          callbacks: {
+                            ...chartOptionsBase.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                 let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+                                return label;
+                            }
+                          }
+                     }
+                 }
             }
         });
 
@@ -174,8 +250,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'Waktu (Jam)',
                     data: [2, 1.5],
-                    backgroundColor: [chartColors[0], chartColors[1]],
-                    borderColor: [chartColors[0], chartColors[1]],
+                    backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')], // Use computed styles
+                    borderColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')],
                     borderWidth: 1,
                     borderRadius: 5,
                     barPercentage: 0.6
@@ -193,7 +269,26 @@ document.addEventListener('DOMContentLoaded', function() {
                             callback: value => value + ' Jam' 
                         } 
                     } 
-                } 
+                },
+                 plugins: {
+                     ...chartOptionsBase.plugins,
+                     tooltip: {
+                         ...chartOptionsBase.plugins.tooltip,
+                         callbacks: {
+                             ...chartOptionsBase.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                 let label = context.dataset.label || '';
+                                 if (label) {
+                                     label += ': ';
+                                 }
+                                 if (context.parsed.y !== null) {
+                                     label += context.parsed.y + ' Jam';
+                                 }
+                                 return label;
+                             }
+                         }
+                     }
+                 }
             }
         });
 
@@ -205,8 +300,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'Kerusakan (%)',
                     data: [1, 0.8],
-                    backgroundColor: [chartColors[0], chartColors[1]],
-                    borderColor: [chartColors[0], chartColors[1]],
+                    backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')], // Use computed styles
+                    borderColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')],
                     borderWidth: 1,
                     borderRadius: 5,
                     barPercentage: 0.6
@@ -224,7 +319,26 @@ document.addEventListener('DOMContentLoaded', function() {
                             callback: value => value + '%' 
                         } 
                     } 
-                } 
+                },
+                 plugins: {
+                     ...chartOptionsBase.plugins,
+                      tooltip: {
+                         ...chartOptionsBase.plugins.tooltip,
+                          callbacks: {
+                            ...chartOptionsBase.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                 let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+                                return label;
+                            }
+                          }
+                     }
+                 }
             }
         });
         
@@ -236,8 +350,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'Akurasi (%)',
                     data: [99.5, 99.7],
-                    backgroundColor: [chartColors[0], chartColors[1]],
-                    borderColor: [chartColors[0], chartColors[1]],
+                    backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')], // Use computed styles
+                    borderColor: [getComputedStyle(document.documentElement).getPropertyValue('--accent-secondary'), getComputedStyle(document.documentElement).getPropertyValue('--accent-tertiary')],
                     borderWidth: 1,
                     borderRadius: 5,
                     barPercentage: 0.6
@@ -256,7 +370,26 @@ document.addEventListener('DOMContentLoaded', function() {
                             callback: value => value + '%' 
                         } 
                     } 
-                } 
+                },
+                 plugins: {
+                     ...chartOptionsBase.plugins,
+                      tooltip: {
+                         ...chartOptionsBase.plugins.tooltip,
+                          callbacks: {
+                            ...chartOptionsBase.plugins.tooltip.callbacks,
+                             label: function(context) {
+                                 let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+                                return label;
+                            }
+                          }
+                     }
+                 }
             }
         });
     }

@@ -1,8 +1,65 @@
+/* CSS Variables for Theme */
+:root {
+    /* Light Mode Colors */
+    --bg-color: #F0F4F8; /* Latar Utama */
+    --text-color-primary: #1E293B; /* Teks Utama */
+    --text-color-secondary: #475569; /* Teks Sekunder */
+    --card-bg: #FFFFFF; /* Latar Kartu */
+    --accent-primary: #004299; /* Aksen Utama (Biru Tua) */
+    --accent-secondary: #2A6EBC; /* Aksen Sekunder (Biru Sedang) */
+    --accent-tertiary: #559BD8; /* Aksen Tersier (Biru Muda) */
+    --flowchart-border: #2A6EBC;
+    --flowchart-text: #004299;
+    --flowchart-decision-bg: #FFFBEB; /* Warna kuning muda untuk keputusan */
+    --flowchart-decision-border: #F59E0B; /* Aksen Peringatan */
+    --flowchart-decision-text: #B45309; /* Teks untuk keputusan */
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --nav-link-color: #475569;
+    --nav-link-hover: #004299;
+    --nav-link-active: #004299;
+    --section-bg-alt: #FFFFFF;
+    --gradient-from: #004299;
+    --gradient-to: #2A6EBC;
+    --footer-text: #475569;
+    --toggle-bg: #D1D5DB; /* bg-gray-300 */
+    --toggle-hover-bg: #9CA3AF; /* hover:bg-gray-400 */
+    --toggle-icon: #1F2937; /* text-gray-800 */
+}
+
+.dark-mode {
+    /* Dark Mode Colors */
+    --bg-color: #1A202C; /* Dark background */
+    --text-color-primary: #E2E8F0; /* Light text */
+    --text-color-secondary: #A0AEC0; /* Medium light text */
+    --card-bg: #2D3748; /* Dark card background */
+    --accent-primary: #63B3ED; /* Light blue accent */
+    --accent-secondary: #4299E1; /* Medium blue accent */
+    --accent-tertiary: #90CDF4; /* Lighter blue accent */
+    --flowchart-border: #4299E1;
+    --flowchart-text: #90CDF4;
+    --flowchart-decision-bg: #4A5568; /* Darker grey for decision */
+    --flowchart-decision-border: #F6E05E; /* Yellowish for warning */
+    --flowchart-decision-text: #F6E05E;
+    --nav-bg: rgba(45, 55, 72, 0.9);
+    --nav-link-color: #A0AEC0;
+    --nav-link-hover: #E2E8F0;
+    --nav-link-active: #63B3ED;
+    --section-bg-alt: #2D3748;
+    --gradient-from: #4299E1;
+    --gradient-to: #63B3ED;
+    --footer-text: #A0AEC0;
+     --toggle-bg: #4A5568; /* bg-gray-600 */
+    --toggle-hover-bg: #718096; /* hover:bg-gray-500 */
+    --toggle-icon: #E2E8F0; /* text-gray-200 */
+}
+
+
 /* Base Styles */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #F0F4F8; /* Latar Utama */
-    color: #1E293B; /* Teks Utama */
+    background-color: var(--bg-color);
+    color: var(--text-color-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .chart-container {
@@ -24,9 +81,9 @@ body {
 
 /* Flowchart Styles */
 .flowchart-step {
-    background-color: #FFFFFF;
-    border: 2px solid #2A6EBC; /* Aksen Sekunder */
-    color: #004299; /* Aksen Utama */
+    background-color: var(--card-bg);
+    border: 2px solid var(--flowchart-border);
+    color: var(--flowchart-text);
     padding: 0.75rem 1rem; /* p-3 p-4 */
     border-radius: 0.5rem; /* rounded-lg */
     text-align: center;
@@ -36,6 +93,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .flowchart-connector {
@@ -44,26 +102,30 @@ body {
     justify-content: center;
     margin: 0.5rem 0; /* my-2 */
     font-size: 1.5rem; /* text-2xl */
-    color: #2A6EBC; /* Aksen Sekunder */
+    color: var(--accent-secondary);
+    transition: color 0.3s ease;
 }
 
 .flowchart-connector-line {
     width: 2px;
     height: 30px;
-    background-color: #2A6EBC;
+    background-color: var(--accent-secondary);
     margin: auto;
+    transition: background-color 0.3s ease;
 }
 
 .flowchart-connector-line-horizontal {
     height: 2px;
     width: 100%;
-    background-color: #2A6EBC;
+    background-color: var(--accent-secondary);
+     transition: background-color 0.3s ease;
 }
 
 .flowchart-decision {
-    background-color: #FFFBEB; /* Warna kuning muda untuk keputusan */
-    border: 2px solid #F59E0B; /* Aksen Peringatan */
-    color: #B45309; /* Teks untuk keputusan */
+    background-color: var(--flowchart-decision-bg) !important; /* Override inline style */
+    border: 2px solid var(--flowchart-decision-border) !important; /* Override inline style */
+    color: var(--flowchart-decision-text) !important; /* Override inline style */
+     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* Navigation */
@@ -71,62 +133,166 @@ body {
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--nav-bg);
     backdrop-filter: blur(10px);
+     transition: background-color 0.3s ease;
 }
 
 .nav-link {
     transition: color 0.3s ease, border-bottom-color 0.3s ease;
+     color: var(--nav-link-color);
+}
+
+.nav-link:hover {
+     color: var(--nav-link-hover);
 }
 
 .nav-link.active {
-    color: #004299; /* Aksen Utama */
-    border-bottom-color: #004299;
+    color: var(--nav-link-active);
+    border-bottom-color: var(--nav-link-active);
 }
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background-color: var(--toggle-bg);
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--toggle-hover-bg);
+}
+
+#theme-toggle svg {
+    color: var(--toggle-icon);
+    transition: color 0.3s ease;
+}
+
 
 /* KPI Cards */
 .kpi-card {
-    background-color: #FFFFFF;
+    background-color: var(--card-bg);
     border-radius: 0.75rem; /* rounded-xl */
     padding: 1.5rem; /* p-6 */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
     text-align: center;
+     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .kpi-value {
     font-size: 2.25rem; /* text-4xl */
     font-weight: 700; /* font-bold */
-    color: #004299; /* Aksen Utama */
+    color: var(--accent-primary);
+     transition: color 0.3s ease;
 }
 
 .kpi-target {
     font-size: 0.875rem; /* text-sm */
-    color: #475569; /* Teks Sekunder */
+    color: var(--text-color-secondary);
+     transition: color 0.3s ease;
 }
 
 /* Section Styling */
 .section-title {
     font-size: 1.875rem; /* text-3xl */
     font-weight: 700; /* font-bold */
-    color: #004299; /* Aksen Utama */
+    color: var(--accent-primary);
     margin-bottom: 1rem; /* mb-4 */
     text-align: center;
+     transition: color 0.3s ease;
 }
 
 .section-subtitle {
     font-size: 1.125rem; /* text-lg */
-    color: #475569; /* Teks Sekunder */
+    color: var(--text-color-secondary);
     margin-bottom: 2rem; /* mb-8 */
     text-align: center;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+     transition: color 0.3s ease;
 }
 
 /* Card Styling */
 .card {
-    background-color: #FFFFFF;
+    background-color: var(--card-bg);
     border-radius: 0.75rem; /* rounded-xl */
     padding: 1.5rem; /* p-6 */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lg */
+     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h3 {
+     color: var(--accent-primary) !important; /* Override inline style */
+     transition: color 0.3s ease;
+}
+
+.card p {
+     color: var(--text-color-secondary) !important; /* Override inline style */
+     transition: color 0.3s ease;
+}
+
+/* Specific color overrides from HTML (will be adjusted by variables) */
+#pendahuluan h1 { color: var(--accent-primary) !important; transition: color 0.3s ease; }
+#pendahuluan p.text-gray-700 { color: var(--text-color-secondary) !important; transition: color 0.3s ease; }
+#pendahuluan .card div:first-child { color: var(--accent-secondary) !important; transition: color 0.3s ease; }
+
+#sop .card h3 { color: var(--accent-primary) !important; transition: color 0.3s ease; }
+#sop .card p { color: var(--text-color-secondary) !important; transition: color 0.3s ease; }
+#sop .card { border-left-color: var(--accent-secondary) !important; transition: border-left-color 0.3s ease; }
+
+#aktor .card h3 { color: var(--accent-primary) !important; transition: color 0.3s ease; }
+#aktor .card p { color: var(--text-color-secondary) !important; transition: color 0.3s ease; }
+
+
+#teknologi .kpi-card div:first-child { color: var(--accent-secondary) !important; transition: color 0.3s ease; }
+#teknologi .kpi-card h3 { color: var(--accent-primary) !important; transition: color 0.3s ease; }
+#teknologi .kpi-card p { color: var(--text-color-secondary) !important; transition: color 0.3s ease; }
+
+
+#alurproses .flowchart-step[style] {
+    /* Specific overrides for colored flowchart steps */
+    background-color: var(--flowchart-decision-bg) !important;
+    border-color: var(--flowchart-decision-border) !important;
+    color: var(--flowchart-decision-text) !important;
+}
+
+#alurproses .flowchart-step[style]:last-child {
+     background-color: var(--accent-tertiary) !important; /* Example for a "success" step */
+    border-color: var(--accent-secondary) !important;
+    color: var(--accent-primary) !important;
+}
+
+
+#kpi h3 { color: var(--accent-primary) !important; transition: color 0.3s ease; }
+#kpi p.text-gray-600 { color: var(--text-color-secondary) !important; transition: color 0.3s ease; }
+
+
+#dokumen .card div:first-child { color: var(--accent-tertiary) !important; transition: color 0.3s ease; }
+#dokumen .card a { color: var(--accent-primary) !important; transition: color 0.3s ease; }
+#dokumen .card p { color: var(--text-color-secondary) !important; transition: color 0.3s ease; }
+
+#kesimpulan {
+     background-image: linear-gradient(to right, var(--gradient-from), var(--gradient-to)) !important; /* Override inline style */
+     transition: background-image 0.3s ease;
+}
+
+
+footer {
+    color: var(--footer-text);
+     transition: color 0.3s ease;
+}
+
+/* Adjust chart tick colors in dark mode */
+.dark-mode canvas {
+    filter: invert(100%) hue-rotate(180deg); /* Simple invert for chart visibility */
+}
+
+
+/* Initial theme setup to prevent flash of incorrect theme */
+body.light-mode {
+     /* Default light mode vars are in :root */
+}
+
+body.dark-mode {
+    /* Dark mode vars are in .dark-mode:root or .dark-mode body */
 }
