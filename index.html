@@ -358,17 +358,15 @@
         &copy; <span id="currentYear"></span> Perusahaan Retail Anda. Hak Cipta Dilindungi.
     </footer>
 
-    <!-- Menghubungkan file JavaScript eksternal secara dinamis berdasarkan path project -->
+    <!-- Menghubungkan file JavaScript eksternal dengan pendekatan sederhana -->
     <script>
-        // Deteksi subfolder project dari URL
-        var pathParts = window.location.pathname.split('/');
-        var projectFolder = '';
-        if (pathParts.length > 1 && pathParts[1] !== '') {
-            projectFolder = '/' + pathParts[1];
-        }
+        // Gunakan path relatif yang sederhana dan pasti berfungsi di kedua lingkungan
         var script = document.createElement('script');
-        script.src = projectFolder + '/js/main.js';
+        script.src = 'js/main.js';
         document.body.appendChild(script);
+
+        // Debug: Tampilkan path yang digunakan di console
+        console.log('Loading script dari: ' + script.src);
     </script>
 </body>
 </html>
